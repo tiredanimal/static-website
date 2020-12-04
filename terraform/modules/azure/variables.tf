@@ -1,7 +1,11 @@
 variable "name" {
-  default = "staticwebsite"
+  default = "static"
 }
 
 variable "location" {
   default = "uksouth"
+}
+
+variable "env" {
+  default = "dev"
 }

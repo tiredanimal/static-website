@@ -3,10 +3,10 @@ locals {
   cloud_name = "azure"
 
   custom_domain   = "${local.org_name}.com"
-  custom_path     = "${var.name}.${var.location}.${local.cloud_name}"
+  custom_path     = "${var.name}.${var.location}.${local.cloud_name}.${var.env}"
   custom_full_url = "${local.custom_path}.${local.custom_domain}"
 
-  full_name      = "${local.org_name}${var.name}"
+  full_name      = "${local.org_name}${var.env}${var.name}"
   azure_domain   = "z33.web.core.windows.net"
   azure_full_url = "${local.full_name}.${local.azure_domain}"
 }
