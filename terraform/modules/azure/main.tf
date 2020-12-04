@@ -6,11 +6,18 @@ locals {
   custom_path     = "${var.name}.${var.location}.${local.cloud_name}"
   custom_full_url = "${local.custom_path}.${local.custom_domain}"
 
-  storage_account_name = "${local.org_name}${var.name}"
-  azure_domain         = "z33.web.core.windows.net"
-  azure_full_url       = "${local.storage_account_name}.${local.azure_domain}"
+  full_name      = "${local.org_name}${var.name}"
+  azure_domain   = "z33.web.core.windows.net"
+  azure_full_url = "${local.full_name}.${local.azure_domain}"
 }
 
+// General
+resource "azurerm_resource_group" "this" {
+  name     = var.name
+  location = var.location
+}
+
+// Networking
 resource "cloudflare_record" "this" {
   zone_id = "1804341c8b633f83d43dab12a5dfcfb1"
   name    = local.custom_path
@@ -19,13 +26,9 @@ resource "cloudflare_record" "this" {
   ttl     = 3600
 }
 
-resource "azurerm_resource_group" "this" {
-  name     = var.name
-  location = var.location
-}
-
+// Storage
 resource "azurerm_storage_account" "this" {
-  name                      = local.storage_account_name
+  name                      = local.full_name
   resource_group_name       = azurerm_resource_group.this.name
   location                  = var.location
   account_tier              = "Standard"
