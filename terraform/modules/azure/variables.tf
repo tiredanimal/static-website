@@ -1,7 +1,7 @@
 variable "name" {
-    default = "staticwebsite"
+  default = "staticwebsite"
 }
 
 variable "location" {
-    default = "uksouth"
+  default = "uksouth"
 }

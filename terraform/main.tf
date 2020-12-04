@@ -8,5 +8,5 @@ provider "cloudflare" {
 }
 
 module "azure" {
-    source = "./modules/azure"
+  source = "./modules/azure"
 }

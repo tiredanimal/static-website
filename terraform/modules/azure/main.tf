@@ -1,14 +1,14 @@
 locals {
-  org_name = "tiredanimal"
+  org_name   = "tiredanimal"
   cloud_name = "azure"
 
-  custom_domain = "${local.org_name}.com"
-  custom_path = "${var.name}.${var.location}.${local.cloud_name}"
+  custom_domain   = "${local.org_name}.com"
+  custom_path     = "${var.name}.${var.location}.${local.cloud_name}"
   custom_full_url = "${local.custom_path}.${local.custom_domain}"
 
   storage_account_name = "${local.org_name}${var.name}"
-  azure_domain = "z33.web.core.windows.net"
-  azure_full_url = "${local.storage_account_name}.${local.azure_domain}"
+  azure_domain         = "z33.web.core.windows.net"
+  azure_full_url       = "${local.storage_account_name}.${local.azure_domain}"
 }
 
 resource "cloudflare_record" "this" {
@@ -25,15 +25,15 @@ resource "azurerm_resource_group" "this" {
 }
 
 resource "azurerm_storage_account" "this" {
-  name                     = local.storage_account_name
-  resource_group_name      = azurerm_resource_group.this.name
-  location                 = var.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
+  name                      = local.storage_account_name
+  resource_group_name       = azurerm_resource_group.this.name
+  location                  = var.location
+  account_tier              = "Standard"
+  account_replication_type  = "LRS"
   enable_https_traffic_only = false
 
   static_website {
-      index_document = "index.html"
+    index_document = "index.html"
   }
 
   custom_domain {
@@ -49,5 +49,5 @@ resource "azurerm_storage_blob" "this" {
   storage_container_name = "$web"
   type                   = "Block"
   source                 = "../src/index.html"
-  content_type = "text/html"
+  content_type           = "text/html"
 }
