@@ -3,6 +3,10 @@ provider "azurerm" {
   features {}
 }
 
+provider "cloudflare" {
+  version = "~> 2.0"
+}
+
 module "azure" {
     source = "./modules/azure"
 }

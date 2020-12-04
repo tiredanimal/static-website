@@ -1,3 +1,11 @@
+resource "cloudflare_record" "this" {
+  zone_id = "1804341c8b633f83d43dab12a5dfcfb1"
+  name    = "staticsite.azure"
+  value   = regex("https://(.*)/", azurerm_storage_account.this.primary_web_endpoint)[0]
+  type    = "CNAME"
+  ttl     = 3600
+}
+
 resource "azurerm_resource_group" "this" {
   name     = var.name
   location = var.location
