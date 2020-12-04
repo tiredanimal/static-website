@@ -9,4 +9,6 @@ provider "cloudflare" {
 
 module "azure" {
   source = "./modules/azure"
+
+  env = var.env
 }
