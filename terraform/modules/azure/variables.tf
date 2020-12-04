@@ -1,5 +1,5 @@
 variable "name" {
-    default = "tiredanimalstaticwebsite"
+    default = "staticwebsite"
 }
 
 variable "location" {
