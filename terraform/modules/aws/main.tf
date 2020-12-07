@@ -34,6 +34,7 @@ resource "aws_s3_bucket_object" "this" {
   bucket = aws_s3_bucket.this.id
   key    = "index.html"
   source = "../src/index.html"
+  content_type = "text/html"
 
   etag = filemd5("../src/index.html")
 }
