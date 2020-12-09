@@ -6,9 +6,8 @@ locals {
   custom_path     = "${var.name}.${local.cloud_name}.${var.env}"
   custom_full_url = "${local.custom_path}.${local.custom_domain}"
 
-  full_name      = "${local.org_name}${var.env}${var.name}"
   aws_domain   = "s3-website.eu-west-2.amazonaws.com"
-  aws_full_url = "${local.full_name}.${local.aws_domain}"
+  aws_full_url = "${local.custom_full_url}.${local.aws_domain}"
 }
 
 // Networking
@@ -34,14 +33,14 @@ data "aws_iam_policy_document" "this" {
     ]
 
     resources = [
-      "arn:aws:s3:::${local.full_name}/*",
+      "arn:aws:s3:::${local.custom_full_url}/*",
     ]
   }
 }
 
 // Storage
 resource "aws_s3_bucket" "this" {
-  bucket = local.full_name
+  bucket = local.custom_full_url
   acl    = "public-read"
   policy = data.aws_iam_policy_document.this.json
 
