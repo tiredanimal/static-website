@@ -20,10 +20,30 @@ resource "cloudflare_record" "this" {
   ttl     = 3600
 }
 
+data "aws_iam_policy_document" "this" {
+  statement {
+    sid = "Publicread"
+
+    principals {
+      type = "AWS"
+      identifiers = ["*"]
+    }
+
+    actions = [
+      "s3:GetObject"
+    ]
+
+    resources = [
+      "arn:aws:s3:::${local.full_name}/*",
+    ]
+  }
+}
+
 // Storage
 resource "aws_s3_bucket" "this" {
   bucket = local.full_name
   acl    = "public-read"
+  policy = data.aws_iam_policy_document.this.json
 
   website {
     index_document = "index.html"
