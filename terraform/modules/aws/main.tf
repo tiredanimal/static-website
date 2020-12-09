@@ -1,10 +1,8 @@
 locals {
-  org_name   = "tiredanimal"
   cloud_name = "aws"
 
-  custom_domain   = "${local.org_name}.com"
   custom_path     = "${var.name}.${local.cloud_name}.${var.env}"
-  custom_full_url = "${local.custom_path}.${local.custom_domain}"
+  custom_full_url = "${local.custom_path}.${var.custom_domain}"
 
   aws_domain   = "s3-website.eu-west-2.amazonaws.com"
   aws_full_url = "${local.custom_full_url}.${local.aws_domain}"
@@ -24,7 +22,7 @@ data "aws_iam_policy_document" "this" {
     sid = "Publicread"
 
     principals {
-      type = "AWS"
+      type        = "AWS"
       identifiers = ["*"]
     }
 
@@ -50,9 +48,9 @@ resource "aws_s3_bucket" "this" {
 }
 
 resource "aws_s3_bucket_object" "this" {
-  bucket = aws_s3_bucket.this.id
-  key    = "index.html"
-  source = "../src/index.html"
+  bucket       = aws_s3_bucket.this.id
+  key          = "index.html"
+  source       = "../src/index.html"
   content_type = "text/html"
 
   etag = filemd5("../src/index.html")

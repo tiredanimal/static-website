@@ -5,3 +5,5 @@ variable "name" {
 variable "env" {
   default = "dev"
 }
+
+variable "custom_domain" {}

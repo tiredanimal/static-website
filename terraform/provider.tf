@@ -9,5 +9,5 @@ provider "azurerm" {
 
 provider "aws" {
   version = "3.2.0"
-  region = "eu-west-2"
+  region  = "eu-west-2"
 }
