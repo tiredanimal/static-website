@@ -5,4 +5,5 @@
 A simple static website
 
 ## Links
-static.azure.prod.tiredanimal.com
+static.azure.prod.tiredanimal.com  
+static.aws.prod.tiredanimal.com
