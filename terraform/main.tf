@@ -1,3 +1,23 @@
+terraform {
+  backend "remote" {
+    organization = "tiredanimal"
+
+    workspaces {
+      name = "static-website"
+    }
+  }
+}
+
+provider "cloudflare" {}
+
+provider "azurerm" {
+  features {}
+}
+
+provider "aws" {
+  region = "eu-west-2"
+}
+
 locals {
   org_name      = "tiredanimal"
   custom_domain = "${local.org_name}.com"
@@ -9,7 +29,6 @@ module "azure" {
   env           = var.env
   org_name      = local.org_name
   custom_domain = local.custom_domain
-
 }
 
 module "aws" {
@@ -18,3 +37,4 @@ module "aws" {
   env           = var.env
   custom_domain = local.custom_domain
 }
+
