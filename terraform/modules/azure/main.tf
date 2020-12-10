@@ -45,10 +45,11 @@ resource "azurerm_storage_account" "this" {
 }
 
 resource "azurerm_storage_blob" "this" {
-  name                   = "index.html"
+  for_each               = fileset("../src/", "**")
+  name                   = each.value
   storage_account_name   = azurerm_storage_account.this.name
   storage_container_name = "$web"
   type                   = "Block"
-  source                 = "../src/index.html"
+  source                 = "../src/${each.value}"
   content_type           = "text/html"
 }

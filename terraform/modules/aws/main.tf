@@ -48,10 +48,11 @@ resource "aws_s3_bucket" "this" {
 }
 
 resource "aws_s3_bucket_object" "this" {
+  for_each     = fileset("../src/", "**")
   bucket       = aws_s3_bucket.this.id
-  key          = "index.html"
-  source       = "../src/index.html"
+  key          = each.value
+  source       = "../src/${each.value}"
   content_type = "text/html"
 
-  etag = filemd5("../src/index.html")
+  etag = filemd5("../src/${each.value}")
 }
