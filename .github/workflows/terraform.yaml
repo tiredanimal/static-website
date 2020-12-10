@@ -24,12 +24,11 @@ jobs:
         id: fmt
         run: terraform fmt -check
 
-      - name: Checkov Github Action
-        uses: bridgecrewio/checkov-action@v13
-        with:
-          directory: terraform/
-          quiet: true
-          framework: terraform
+        #      - name: Checkov Github Action
+        #uses: bridgecrewio/checkov-action@v13
+        #with:
+        #  directory: terraform/
+        #  quiet: true
 
       - name: Terraform Init
         id: init
