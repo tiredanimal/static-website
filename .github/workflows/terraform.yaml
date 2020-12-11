@@ -27,7 +27,6 @@ jobs:
       - name: Terraform Lint
         id: lint
         uses: actionshub/terraform-lint@main
-        working-directory: terraform/
 
       - name: Checkov Github Action
         id: checkov
