@@ -1,13 +1,3 @@
-terraform {
-  backend "remote" {
-    organization = "tiredanimal"
-
-    workspaces {
-      name = "static-website"
-    }
-  }
-}
-
 provider "cloudflare" {}
 
 provider "azurerm" {
@@ -37,4 +27,3 @@ module "aws" {
   env           = var.env
   custom_domain = local.custom_domain
 }
-
