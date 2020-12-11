@@ -52,4 +52,5 @@ resource "azurerm_storage_blob" "this" {
   type                   = "Block"
   source                 = "../src/${each.value}"
   content_type           = "text/html"
+  content_md5            = filemd5("../src/${each.value}")
 }
