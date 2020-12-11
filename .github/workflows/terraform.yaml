@@ -37,7 +37,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            const output = `#### Terraform Format 🖌\`${{ steps.fmt.outcome }}\`
             #### Security checks 🛡️\`${{ steps.checkov.outcome }}\`
 
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
