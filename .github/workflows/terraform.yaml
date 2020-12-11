@@ -40,6 +40,10 @@ jobs:
             const output = `#### Terraform Format 🖌\`${{ steps.fmt.outcome }}\`
             #### Security checks 🛡️\`${{ steps.checkov.outcome }}\`
 
+            <details><summary>Show Security Checks</summary>
+            \`\`\`${{ steps.checkov.outputs.stdout }}\`\`\`
+            </details>
+
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
 
               
