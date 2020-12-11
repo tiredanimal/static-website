@@ -43,12 +43,7 @@ jobs:
             #### Terraform Format 🖌\`${{ steps.fmt.outcome }}\`
             #### Security checks 🛡️\`${{ steps.checkov.outcome }}\`
 
-            <details><summary>Show Security Checks</summary>
-            \`\`\`${process.env.SECURITY}\`\`\`
-            </details>
-
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
-
               
             github.issues.createComment({
               issue_number: context.issue.number,
