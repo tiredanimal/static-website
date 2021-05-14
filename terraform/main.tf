@@ -42,3 +42,10 @@ module "aws" {
   env           = var.env
   custom_domain = local.custom_domain
 }
+
+module "google" {
+  source = "./modules/google"
+
+  env           = var.env
+  custom_domain = local.custom_domain
+}
