@@ -12,6 +12,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 2.14.0"
     }
+    google = {
+      source = "hashicorp/google"
+      version = "3.67.0"
+    }
   }
   required_version = ">= 0.13"
 }
